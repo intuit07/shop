@@ -63,5 +63,16 @@ def create():
         return render_template('create.html')
 
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    item = Item.query.get(id)
+    try:
+        db.session.delete(item)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "Ошибка"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
