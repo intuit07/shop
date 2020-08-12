@@ -14,8 +14,7 @@ class Item(db.Model):
     title = db.Column(db.String(100), nullable=True)
     price = db.Column(db.Integer, nullable=True)
     isActive = db.Column(db.Boolean, default=True)
-
-    # text = db.Column(db.Text, nullable=True)
+    text = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
         return self.title
@@ -51,8 +50,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         price = request.form['price']
-
-        item = Item(title=title, price=price)
+        text = request.form['text']
+        item = Item(title=title, price=price, text=text)
         try:
             db.session.add(item)
             db.session.commit()
