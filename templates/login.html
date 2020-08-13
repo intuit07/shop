@@ -1,0 +1,38 @@
+
+
+
+{% extends 'base.html' %}
+
+
+{#{% block title %}#}
+{#    <title>Logining</title>#}
+{#{% endblock %}#}
+
+{% block body %}
+    <h3>Sign In</h3>
+    <div class="container">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}
+            </p>
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+{#    <div class="container">#}
+{#        <h1>Добавление товаров</h1>#}
+{#        <form method="post" >#}
+{#            <input type="text" class="form-control" name="title" id="title" placeholder="Введите название"><br>#}
+{#            <input type="number" class="form-control" name="price" id="price" placeholder="Введите цену"><br>#}
+{#            <input type="text" class="form-control" name="text" id="text" placeholder="Описание"><br>#}
+{#            <button class="btn btn-success" type="submit">Добавить товар</button>#}
+{##}
+{#        </form>#}
+{#    </div>#}
+{% endblock %}
