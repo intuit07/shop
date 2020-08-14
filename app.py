@@ -1,18 +1,13 @@
 from cloudipsp import Api, Checkout
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from forms.forms import LoginForm
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop.db'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['SECRET_KEY'] = 'you-will-never-guess'
-# app.config['DEBUG'] = True
-
 app.config.from_object(Config)
 db = SQLAlchemy(app)
-# from app import routes
+
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -84,7 +79,7 @@ def login():
     if form.validate_on_submit():
         flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
-        return redirect('/index')
+        return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
 

@@ -19,7 +19,16 @@
     <a class="btn btn-outline-primary" href="/create">Добавить товар</a>
     <a class="p-2 text-dark" href="/login">Login</a>
 </div>
-
+<hr>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
 {% block body %}{% endblock %}
 
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
