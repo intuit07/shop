@@ -18,6 +18,13 @@
     </nav>
     <a class="btn btn-outline-primary" href="/create">Добавить товар</a>
     <a class="p-2 text-dark" href="/login">Login</a>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </div>
 <hr>
 {% with messages = get_flashed_messages() %}

@@ -1,13 +1,17 @@
 from cloudipsp import Api, Checkout
 from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from config import Config
 from forms.forms import LoginForm
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
-
+db.create_all()
+migrate = Migrate(app, db)
+# from app import db
+# from app import routes, models
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +22,16 @@ class Item(db.Model):
 
     def __repr__(self):
         return self.title
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
+
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
 
 
 @app.route('/')
