@@ -1,15 +1,14 @@
 from cloudipsp import Api, Checkout
 from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 from config import Config
 from forms.forms import LoginForm
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
-# db.create_all()
-# migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 # from app import db
 # from app import routes, models
 
